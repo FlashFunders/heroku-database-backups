@@ -27,7 +27,8 @@ chmod +x ./awscli-bundle/install
 BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M-%S")-$APP.dump"
 
 # run the Heroku backup
-/app/vendor/heroku-toolbelt/bin/heroku pg:backups capture $DATABASE --expire --app $APP
+/app/vendor/heroku-toolbelt/bin/heroku pg:backups capture $DATABASE --app $APP
+
 # copy the backup output file to our local disk
 curl -o $BACKUP_FILE_NAME `/app/vendor/heroku-toolbelt/bin/heroku pg:backups public-url --app $APP`
 
