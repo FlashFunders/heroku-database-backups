@@ -27,10 +27,10 @@ chmod +x ./awscli-bundle/install
 BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M-%S")-$APP.dump"
 
 # run the Heroku backup
-/app/vendor/heroku-toolbelt/bin/heroku pg:backups capture $DATABASE --app $APP
+heroku pg:backups capture $DATABASE --app $APP
 
 # copy the backup output file to our local disk
-curl -o $BACKUP_FILE_NAME `/app/vendor/heroku-toolbelt/bin/heroku pg:backups public-url --app $APP`
+curl -o $BACKUP_FILE_NAME `heroku pg:backups public-url --app $APP`
 
 # compress the backup file - adds the suffix ".gz"
 gzip $BACKUP_FILE_NAME
